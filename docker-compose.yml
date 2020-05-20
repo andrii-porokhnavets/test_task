@@ -1,0 +1,16 @@
+version: "3"
+
+services:
+  mongodb:
+    image: mongo
+    container_name: mongodb
+    restart: unless-stopped
+    command: mongod
+
+  app:
+    build: app
+    container_name: flask_app
+    ports:
+      - "5000:5000"
+    depends_on:
+      - mongodb
